@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="descuento_report_partner_category_view" model="ir.ui.view">
+            <field name="inherit_id" ref="base.view_partner_category_form" />
+            <field name="model">res.partner.category</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="max_discount"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</openerp>

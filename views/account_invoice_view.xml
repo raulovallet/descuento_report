@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="descuento_report_account_invoice_form_view" model="ir.ui.view">
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+
+
+
+                 <xpath expr="//page/field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
+
+                     <field name="amount_discount"/>
+
+                 </xpath>
+
+                <xpath expr="//field[@name='amount_untaxed']" position="after">
+
+                    <!-- <field name="total_amount_discount" widget="monetary" options="{'currency_field': 'currency_id'}" font-bold="False"/> -->
+                    <field name="total_grabado" widget="monetary" options="{'currency_field': 'currency_id'}" bold-font="False"/>
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

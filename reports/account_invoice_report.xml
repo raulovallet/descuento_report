@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="account.report_invoice_document">
+            <t t-call="report.external_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="page">
+                    <div class="row" style="font-size: 17px; padding-top: 20px">
+                            <table>
+                                <tr>
+                                    <td style="width: 1200px; text-align: center; font-size: 27px">
+                                        <strong>
+                                            <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">FACTURA</span>
+                                            <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+                                            <span t-if="o.type == 'out_invoice' and o.state == 'draft'">FACTURA BORRADOR</span>
+                                            <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">FACTURA CANCELADA</span>
+                                            <span t-if="o.type == 'out_refund'">NOTA DE CRÉDITO</span>
+                                            <span t-if="o.type == 'in_refund'">REEMBOLSO DE SUPLIDOR</span>
+                                            <span t-if="o.type == 'in_invoice'">FACTURA DE SUPLIDOR</span>
+                                        </strong>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                <!--
+                                    <td style="width: 200px; text-align: left">
+                                        <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">FACTURA VALIDA PARA CRÉDITO FISCAL</span>
+                                    </td>  -->
+                                    <td style="width: 200px; text-align: center">
+                                        <div style="float: right; width: 200px">
+                                            <div style="float: left; margin-right: 20px"><strong>NO.:</strong></div>
+                                            <div style="float: left"><p t-field="o.numero_de_factura"/></div>
+                                       </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="row" style="font-size: 15px">
+                            <div style="padding-left: 20px; border: 2px solid black; border-radius: 10px; float: left; height: 70px; width: 390px">
+                                <div style="float: left; height: 35px">
+                                    <div style="float: left; margin-right: 30px"><strong>NCF:</strong></div>
+                                    <div style="float: left; width: 240px"><!-- AQUI VA EL NCF -->
+                                        <p t-field="o.number"/>
+                                    </div>
+                                </div>
+
+                                <div style="float: left; height: 35px">
+                                    <div style="float: left; margin-right: 20px"><strong>Fecha:</strong></div>
+                                    <div style="float: left"><!-- AQUI VA LA LA FECHA -->
+                                        <p t-field="o.date_invoice"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding-left: 20px; border: 2px solid black; border-radius: 10px; float: right; height: 70px; width: 430px">
+                                <div style="float: left; height: 35px">
+                                    <div style="float: left; margin-right: 2px"><strong>Moneda:</strong></div>
+                                    <div style="float: left; width: 40px"><p t-field="o.currency_id"/></div>
+                                </div>
+
+                                <div style="float: left; height: 35px">
+                                    <div style="float: left; margin-right: 5px; width: 160px"><strong>Términos de pago:</strong></div>
+                                    <div style="float: left; width: 120px"><!-- AQUI VA TERMINOS DE PAGO -->
+                                        <!-- <p t-field="o.payment_term_id.name"/> -->
+                                        <p t-field="o.partner_id.property_payment_term_id"/>
+                                    </div>
+                                </div>
+
+                                <div style="float: left; height: 35px">
+                                    <div style="float: left; margin-right: 10px"><strong>Vendedor:</strong></div>
+                                    <div style="float: left; width: 200px"><!-- AQUI VA EL VENDEDOR -->
+                                        <p t-field="o.user_id.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-left: 20px; border: 2px solid black; border-radius: 10px; margin-top: 4px; align: left; font-size: 15px">
+                            <div style="float: left; width: 290px; height: 30px">
+                                <div style="float: left; margin-right: 5px"><strong>RNC:</strong></div>
+                                <div style="float: left"><!--AQUI VA EL RNC-->
+                                    <p t-field="o.partner_id.vat"/>
+                                </div>
+                            </div>
+
+                            <div style="float: left; width: 290px; height: 30px">
+                                <div style="float: left; margin-right: 5px"><strong>Atención:</strong></div>
+                                <div style="float: left">
+
+                                </div>
+                            </div>
+
+                            <div style="float: left; width: 300px; height: 30px">
+                                <div style="float: left; margin-right: 5px"><strong>Teléfono:</strong></div>
+                                <div style="float: left; width: 200px"><!--AQUI VA EL TELEFONO-->
+                                    <span t-field="o.partner_id.phone"/>
+                                </div>
+                            </div>
+
+                            <div style="float: left; width: 1000px; height: 30px">
+                                <div style="float: left; margin-right: 5px"><strong>Cliente:</strong></div>
+                                <div style="float: left; width: 900px"><!--AQUI VA EL CLIENTE-->
+                                    <p t-field="o.partner_id"/>
+                                </div>
+                            </div>
+
+                            <div style="float: left; width: 200px; height: 30px">
+                                <div style="float: left; margin-right: 5px; width: 80px"><strong>Orden:</strong></div>
+                                <div style="float: left"><!--AQUI VA EL NO. DE ORDEN-->
+                                   <span t-field="o.order"/>
+                                </div>
+                            </div>
+
+                            <div style="float: left; width: 700px; height: 30px">
+                                <div style="float: left; margin-right: 5px"><strong>Dirección:</strong></div>
+                                <div style="float: left; width: 600px"><!--AQUI VA LA DIRECCION-->
+                                    <span t-field="o.partner_id.street"/><span> </span><span t-field="o.partner_id.city"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    <table class="table table-condensed">
+                        <thead style="background-color:#cccccc">
+                            <tr>
+                                <th>COD</th>
+                                <th>CANT</th>
+                                <th>UND</th>
+                                <th>REFERENCIA</th>
+                                <th class="text-left">P/U</th>
+                                <th class="text-left">IMP.</th>
+                                <t t-if ="o.total_amount_discount > 0">
+                                    <th class="text-left">DESC</th>
+                                    <th class="sale.group_discount_per_so_line">PcD</th>
+                                </t>
+                                <th class="text-right">MONTO</th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+
+                            <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                <td>
+                                    <span t-field="l.product_id.default_code"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.quantity"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.uom_id" groups="product.group_uom"/>
+                                </td>
+                                <td>
+                                    <strong><p t-field="l.name"/></strong>
+                                    <span t-if="l.product_id.warranty != 0.0">
+                                        <p style="display:inline" t-field="l.product_id.warranty"/>
+                                        <p style="display:inline"> meses de garantia. Ver política de garantía al dorso.</p>
+                                    </span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="l.price_unit" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="l.price_subtotal * l.invoice_line_tax_ids.amount/100" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                </td>
+                                <t t-if ="o.total_amount_discount > 0">
+                                    <td class="text-left">
+                                        <span t-esc="l.discount"/>%
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-esc="l.amount_discount" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                    </td>
+                                </t>
+                                <td class="text-right">
+                                    <span t-field="l.price_subtotal"/>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+        <span t-if="o.type == 'out_refund'"><p>Esta Nota de Crédito afecta la factura NCF<span t-field="o.origin"/></p></span>
+        <span t-if="o.type == 'out_refund'"><p>Si la reclamación se produce luego de 30 días pierde el ITBIS.</p></span>
+
+                    <div class="row">
+                        <div style="float: right; border: 2px solid black; border-radius: 10px; padding: 2px; width: 310px">
+                            <table>
+                                <tr>
+                                    <td style="width: 200px; text-align: right">
+                                        <strong>Sub-Total General</strong>
+                                    </td>
+                                    <td style="width: 150px; text-align: right">
+                                        <strong><span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                                    </td>
+                                </tr>
+
+                                <t t-if ="o.total_amount_discount > 0">
+                                    <tr>
+                                        <td style="width: 200px; text-align: right">
+                                            <strong>Descuento</strong>
+                                        </td>
+                                        <td style="width: 150px; text-align: right">
+                                            <strong><span t-field="o.total_amount_discount" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <tr>
+                                    <td style="width: 200px; text-align: right">
+                                        <strong>Total Grabado</strong>
+                                    </td>
+                                    <td style="width: 150px; text-align: right">
+                                        <strong><span t-field="o.total_grabado"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                                    </td>
+                                </tr>
+                        <!--
+                        <tr>
+                            <td style="width: 200px; text-align: right">
+                                <strong>Descuento</strong>
+                            </td>
+                            <td style="width: 150px; text-align: right">
+                                <strong>RD$ 0.00</strong>
+                            </td>
+                        </tr>
+                        -->
+                        <!--
+                        <tr>
+                            <td style="width: 200px; text-align: right">
+                                <strong>Excento de Itbis</strong>
+                            </td>
+                            <td style="width: 150px; text-align: right">
+                                <strong>RD$ 0.00</strong>
+                            </td>
+                        </tr>
+                        -->
+                        <!--
+                        <tr>
+                            <td style="width: 200px; text-align: right">
+                                <strong>Grabado con Itbis</strong>
+                            </td>
+                            <td style="width: 150px; text-align: right">
+
+                            </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <td style="width: 200px; text-align: right">
+                                <strong>18% Itbis</strong>
+                            </td>
+                            <td style="width: 150px; text-align: right">
+                                <strong><span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px; text-align: right; border-top: 2px solid black">
+                                <strong>TOTAL</strong>
+                            </td>
+                            <td style="width: 150px; text-align: right; border-top: 2px solid black">
+                                <strong><span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="width: 600px">
+                <p t-if="o.comment">
+                    <strong>Comment:</strong>
+                    <span t-field="o.comment"/>
+                </p>
+            </div>
+
+        </div>
+    </t>
+
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="descuento_report_sales_order_form_view" model="ir.ui.view">
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+
+
+
+                 <xpath expr="//page/field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+
+                     <field name="amount_discount"/>
+
+
+                 </xpath>
+
+                        <!--esto es la pagina-->
+
+
+                <xpath expr="//notebook/page/field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
+                    <field name="amount_discount"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='amount_untaxed']" position="after">
+
+                    <field name="total_amount_discount" widget="monetary" options="{'currency_field': 'currency_id'}" font-bold="False"/>
+                    <field name="total_grabado" widget="monetary" options="{'currency_field': 'currency_id'}" bold-font="False"/>
+
+                </xpath>
+
+
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

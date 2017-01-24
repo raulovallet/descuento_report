@@ -1,0 +1,3 @@
+import sale_order
+import res_partner
+import account_invoice

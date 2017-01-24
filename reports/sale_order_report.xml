@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="sale.report_saleorder_document">
+            <t t-call="report.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+
+                <div class="page">
+
+                    <!-- ============================================================================================== -->
+                    <!--					                                         PRIMER BLOQUE 										             -->
+                    <!-- ============================================================================================== -->
+                                <div class="row" style="font-size: 17px">
+                                    <table>
+                                        <tr>
+                                            <td style="width: 1200px; text-align: center; font-size: 27px">
+                                                <strong>
+                                                    <span t-if="doc.state not in ['draft','sent']">Cotización </span>
+                                                    <span t-if="doc.state in ['draft','sent']">Cotización </span>
+                                                </strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="width: 200px; text-align: center">
+                                                <div style="float: right; width: 200px">
+                                                    <div style="float: left; margin-right: 20px"><strong>NO.:</strong></div>
+                                                    <div style="float: left"><span t-field="doc.name"/></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                    <!-- ============================================================================================ -->
+                    <!--                                                                          SEGUNDO BLOQUE   									                 -->
+                    <!-- ============================================================================================ -->
+
+                <div class="row" style="font-size: 15px">
+
+                    <div style="padding-left: 20px; border: 2px solid black; border-radius: 10px; float: left; height: 70px; width: 390px">
+
+                        <div style="float: left; height: 35px">
+                            <div style="float: left; margin-right: 30px">
+                                <strong>Fecha:</strong>
+                            </div>
+                            <div style="float: left; width: 240px">
+                                <p t-field="doc.date_order"/>
+                            </div>
+                        </div>
+
+                        <div style="float: left; height: 35px">
+                            <div style="float: left; margin-right: 20px">
+                                <strong>Vendedor:</strong>
+                            </div>
+                            <div style="float: left; width: 200px">
+                                <p t-field="doc.user_id.name"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="padding-left: 20px; border: 2px solid black; border-radius: 10px; float: right; height: 70px; width: 430px">
+
+                        <div style="float: left; height: 35px">
+                            <div style="float: left; margin-right: 2px">
+                                <strong>Moneda:</strong>
+                            </div>
+                            <div style="float: left; width: 50px">
+                                <p t-field="doc.pricelist_id.currency_id"/>
+                            </div>
+                        </div>
+
+                        <div style="float: left; height: 35px">
+                            <div style="float: left; margin-right: 5px; width: 140px">
+                                <strong>Términos de pago:</strong>
+                            </div>
+                            <div style="float: left; width: 120px">
+                                <p t-field="doc.payment_term_id.note"/>
+                            </div>
+                        </div>
+
+                        <div style="float: left; height: 35px">
+                            <div style="float: left; margin-right: 10px">
+                                <strong>        </strong>
+                            </div>
+                            <div style="float: left; width: 200px">
+                                <!-- <p t-field="doc.user_id.name"/> -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="padding-left: 20px; border: 2px solid black; border-radius: 10px; margin-top: 4px; align: left; font-size: 15px; float: left; width: 1050px">
+
+                                <div style="float: left; width: 290px; height: 30px">
+                            <div style="float: left; margin-right: 5px">
+                                <strong>RNC:</strong>
+                            </div>
+                            <div style="float: left">
+                                <p t-field="doc.partner_id.ref"/>
+                            </div>
+                        </div>
+
+                        <div style="float: left; width: 290px; height: 30px">
+                            <div style="float: left; margin-right: 5px">
+                                <strong>Atención:</strong>
+                            </div>
+                            <div style="float: left">
+                                <!-- VACIO -->
+                            </div>
+                        </div>
+
+                        <div style="float: left; width: 300px; height: 30px">
+                            <div style="float: left; margin-right: 5px">
+                                <strong>Teléfono:</strong>
+                            </div>
+                            <div style="float: left; width: 200px">
+                                <span t-field="doc.partner_id.phone"/>
+                            </div>
+                        </div>
+
+                        <div style="float: left; width: 1000px; height: 30px">
+                            <div style="float: left; margin-right: 5px">
+                                <strong>Cliente:</strong>
+                            </div>
+                            <div style="float: left; width: 900px">
+                                <p t-field="doc.partner_id"/>
+                            </div>
+                        </div>
+
+                        <div style="float: left; width: 900px; height: 30px">
+                            <div style="float: left; margin-right: 5px; width: 80px">
+                                <strong>Dirección:</strong>
+                            </div>
+                            <div style="float: left; width: 600px">
+                                <span t-field="doc.partner_id.street"/><span> </span><span t-field="doc.partner_id.city"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                    <!-- =============================================================================================== -->
+                    <!--						                                         TERCER BLOQUE 						           				-->
+                    <!-- =============================================================================================== -->
+
+                            <div id="informations">
+
+                            </div>
+
+
+                <table class="table table-condensed">
+                    <thead style="background-color:#cccccc">
+                        <tr>
+                            <th>COD</th>
+                            <th>CANT</th>
+                            <th>UND</th>
+                            <th>REFERENCIA</th>
+                            <th class="text-left">P/U</th>
+                            <th class="text-left">IMP.</th>
+                            <t t-if ="doc.total_amount_discount > 0">
+                                <th class="text-left">DESC</th>
+                                <th class="sale.group_discount_per_so_line">PcD</th>
+                            </t>
+                            <th class="text-right">MONTO</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="invoice_tbody">
+                        <tr t-foreach="doc.order_line" t-as="l">
+                            <td>
+                                <span t-field="l.product_id.default_code"/>
+                            </td>
+                            <td>
+                                <span t-field="l.product_uom_qty"/>
+                            </td>
+                            <td>
+                                <span groups="product.group_uom" t-field="l.product_uom"/>
+                            </td>
+                            <td>
+                                <strong><p t-field="l.name"/></strong>
+                                <span t-if="l.product_id.warranty != 0.0">
+                                    <p style="display:inline" t-field="l.product_id.warranty"/>
+                                    <p style="display:inline"> meses de garantia. Ver política de garantía al dorsdoc.</p>
+                                </span>
+                            </td>
+                            <td class="text-left">
+                                <span t-field="l.price_unit" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.currency_id&quot;}"/>
+                            </td>
+                            <td class="text-left">
+                                                <span t-esc="l.price_subtotal * l.tax_id.amount/100" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.currency_id&quot;}"/>
+                                <!-- <span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/> -->
+                            </td>
+                            <t t-if ="doc.total_amount_discount > 0">
+                                <td class="text-left">
+                                    <span t-esc="l.discount"/>%
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="l.amount_discount" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.currency_id&quot;}"/>
+                                </td>
+                            </t>
+                            <td class="text-right">
+                                <span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                                     <div style="float: right; border: 2px solid black; border-radius: 10px; padding: 2px; width: 310px">
+                                         <table>
+                                             <tr>
+                                                 <td style="width: 200px; text-align: right">
+                                                    <strong>Sub-Total General</strong>
+                                                 </td>
+                                                 <td style="width: 150px; text-align: right">
+                                                    <span t-field="doc.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                                                 </td>
+                                             </tr>
+                                             <t t-if ="doc.total_amount_discount > 0">
+                                                 <tr>
+                                                     <td style="width: 200px; text-align: right">
+                                                        <strong>Descuento</strong>
+                                                     </td>
+                                                     <td style="width: 150px; text-align: right">
+                                                        <span t-field="doc.total_amount_discount" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                                                     </td>
+                                                 </tr>
+                                             </t>
+
+                                              <tr>
+                                                 <td style="width: 200px; text-align: right">
+                                                    <strong>Total Grabado</strong>
+                                                 </td>
+                                                 <td style="width: 150px; text-align: right">
+                                                    <span t-field="doc.total_grabado" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                                                 </td>
+                                             </tr>
+
+                                             <tr>
+                                                 <td style="width: 200px; text-align: right">
+                                                    <strong>18% Itbis</strong>
+                                                 </td>
+                                                 <td style="width: 150px; text-align: right">
+                                                    <span t-field="doc.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                                                 </td>
+                                             </tr>
+
+                                             <tr>
+                                                 <td style="width: 200px; text-align: right; border-top: 2px solid black">
+                                                    <strong>TOTAL</strong>
+                                                 </td>
+                                                 <td style="width: 150px; text-align: right; border-top: 2px solid black">
+                                                    <span t-field="doc.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                                                 </td>
+                                             </tr>
+
+                                         </table>
+                                     </div>
+                                 </div>
+
+                            <p t-field="doc.note"/>
+
+
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>
