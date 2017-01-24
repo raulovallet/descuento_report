@@ -16,7 +16,7 @@
 
                 <xpath expr="//field[@name='amount_untaxed']" position="after">
 
-                    <!-- <field name="total_amount_discount" widget="monetary" options="{'currency_field': 'currency_id'}" font-bold="False"/> -->
+                    <field name="total_amount_discount" widget="monetary" options="{'currency_field': 'currency_id'}" font-bold="False"/>
                     <field name="total_grabado" widget="monetary" options="{'currency_field': 'currency_id'}" bold-font="False"/>
 
                 </xpath>

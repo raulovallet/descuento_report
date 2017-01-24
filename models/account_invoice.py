@@ -42,7 +42,7 @@ class descuento_report_account_invoice(models.Model):
             for line in invoice.invoice_line_ids:
 
                 if line.amount_discount > 0:
-                    total_d += (line.price_unit-line.amount_discount) * line.quantity
+                    total_d += ((line.price_unit-line.amount_discount) * line.quantity)
 
                 if line.invoice_line_tax_ids.amount > 0:
                     total_g += line.price_subtotal
