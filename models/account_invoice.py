@@ -33,6 +33,8 @@ class descuento_report_account_invoice(models.Model):
     _inherit = 'account.invoice'
 
 
+
+
     @api.depends('invoice_line_ids.price_unit','invoice_line_ids.quantity', 'invoice_line_ids.price_subtotal','invoice_line_ids.amount_discount', 'invoice_line_ids.invoice_line_tax_ids')
     def _comute_total_dicount_grabado(self):
 
@@ -40,11 +42,18 @@ class descuento_report_account_invoice(models.Model):
             total_g = total_d = 0.0
 
             for line in invoice.invoice_line_ids:
+                currency = self.currency_id or None
+                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+                taxes = False
+                if line.invoice_line_tax_ids:
+                    taxes = line.invoice_line_tax_ids.compute_all(price, currency, line.quantity,
+                                                                  product=line.product_id,
+                                                                  partner=self.partner_id)
 
                 if line.amount_discount > 0:
                     total_d += ((line.price_unit-line.amount_discount) * line.quantity)
 
-                if line.invoice_line_tax_ids.amount > 0:
+                if taxes['total_included'] - taxes['total_excluded']   > 0:
                     total_g += line.price_subtotal
 
             invoice.update({

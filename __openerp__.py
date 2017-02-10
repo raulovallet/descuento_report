@@ -1,7 +1,7 @@
 {
 'name': "Descuento Report",
 'description' : "Agrega la columna descuento en el reporte sale_order y el campo suma total de los descuentos",
-'version' : "1.0",
+'version' : "9.0.0.1",
 'author' : "Raul Ovalle, xmarts.com",
 'depends' : ['sale'],
 'data': ['views/sale_order_view.xml',
