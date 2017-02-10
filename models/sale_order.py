@@ -45,7 +45,7 @@ class descuento_report_sale_order(models.Model):
                 if line.amount_discount > 0:
                     total_d += ((line.price_unit-line.amount_discount) * line.product_uom_qty)
 
-                if line.tax_id.amount > 0:
+                if line.price_tax > 0:
                     total_g += line.price_subtotal
 
             order.update({
