@@ -53,8 +53,9 @@ class descuento_report_account_invoice(models.Model):
                 if line.amount_discount > 0:
                     total_d += ((line.price_unit-line.amount_discount) * line.quantity)
 
-                if taxes['total_included'] - taxes['total_excluded']   > 0:
-                    total_g += line.price_subtotal
+                if taxes:
+                    if taxes['total_included']- taxes['total_excluded']   > 0:
+                        total_g += line.price_subtotal
 
             invoice.update({
                 'total_amount_discount': total_d,
