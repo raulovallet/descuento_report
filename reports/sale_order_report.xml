@@ -65,26 +65,26 @@
                             <div style="float: left; margin-right: 2px">
                                 <strong>Moneda:</strong>
                             </div>
-                            <div style="float: left; width: 50px">
+                            <div style="float: left; width: 40px">
                                 <p t-field="doc.pricelist_id.currency_id"/>
                             </div>
                         </div>
 
                         <div style="float: left; height: 35px">
-                            <div style="float: left; margin-right: 5px; width: 140px">
+                            <div style="float: left; margin-right: 5px; width: 160px">
                                 <strong>Términos de pago:</strong>
                             </div>
                             <div style="float: left; width: 120px">
-                                <p t-field="doc.payment_term_id.note"/>
+                                <p t-field="doc.payment_term_id.name"/>
                             </div>
                         </div>
 
                         <div style="float: left; height: 35px">
                             <div style="float: left; margin-right: 10px">
-                                <strong>        </strong>
+                                <strong>Fecha de expiración:</strong>
                             </div>
                             <div style="float: left; width: 200px">
-                                <!-- <p t-field="doc.user_id.name"/> -->
+                                <p t-field="doc.validity_date"/>
                             </div>
                         </div>
 
