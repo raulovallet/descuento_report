@@ -8,7 +8,8 @@
          'views/account_invoice_view.xml',
          'views/partner_category_view.xml',
          'reports/sale_order_report.xml',
-         'reports/account_invoice_report.xml'
+         'reports/account_invoice_report.xml',
+         'views/res_partner_view.xml',
           ],
 'installable' : True,
 }

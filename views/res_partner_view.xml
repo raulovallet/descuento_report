@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="descuento_report_res_partner" model="ir.ui.view">
+            <field name="name">Descuento report res partner view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='category_id']" position="replace">
+                    <!-- Add your fields or attributes here -->
+                    <field name="category_id"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>
